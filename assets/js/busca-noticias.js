@@ -83,7 +83,7 @@ jQuery(function ($) {
     if (e.which === 13) {
       // Enter key
       e.preventDefault();
-      window.location.href = window.location.origin =
+      window.location.href = window.location.origin +
         "?s=" +
         encodeURIComponent($(this).val().trim()) +
         "&post_type=" +

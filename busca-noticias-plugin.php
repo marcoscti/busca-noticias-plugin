@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Busca Notícias (ACF) - Sugestões AJAX
  * Description: Shortcode [busca_noticias] — busca por CPT "noticia" incluindo TÍTULO e campos ACF (resumo, revisao, autor, autor_bio). Sugestões a partir de 3 caracteres via AJAX.
- * Version: 2.1.1
+ * Version: 2.1.2
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -28,14 +28,14 @@ class BN_Ajax_Search {
             'bn-search-style',
             $dir . 'assets/css/busca-noticias.css',
             [],
-            '2.1.1'
+            '2.1.2'
         );
 
         wp_enqueue_script(
             'bn-search-js',
             $dir . 'assets/js/busca-noticias.js',
             ['jquery'],
-            '2.1.1',
+            '2.1.2',
             true
         );
 
