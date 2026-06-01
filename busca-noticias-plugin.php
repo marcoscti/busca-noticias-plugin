@@ -19,6 +19,22 @@ class BN_Ajax_Search {
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_assets' ]);
         add_action('wp_ajax_busca_noticias', [ $this, 'ajax_handler' ]);
         add_action('wp_ajax_nopriv_busca_noticias', [ $this, 'ajax_handler' ]);
+
+        // Hook de ativação para criar a tabela de estatísticas
+        register_activation_hook(__FILE__, [ $this, 'create_stats_table' ]);
+    }
+
+    public function create_stats_table() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'bn_search_stats';
+        $charset_collate = $wpdb->get_charset_collate();
+        $sql = "CREATE TABLE $table_name (
+            term varchar(100) NOT NULL,
+            search_count bigint(20) DEFAULT 0 NOT NULL,
+            PRIMARY KEY  (term)
+        ) $charset_collate;";
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
     }
 
     public function enqueue_assets() {
@@ -90,6 +106,8 @@ class BN_Ajax_Search {
         if (mb_strlen($term) < 3) {
             wp_send_json_error(['message' => 'Digite ao menos 3 caracteres.']);
         }
+
+        $this->log_search_term($term);
 
         // Receber filtros adicionais do cliente
         $post_type_raw = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : 'noticia';
@@ -257,6 +275,20 @@ class BN_Ajax_Search {
         set_transient($cache_key, $results, HOUR_IN_SECONDS);
 
         wp_send_json_success($results);
+    }
+
+    /** Registra o termo buscado no banco de dados */
+    private function log_search_term($term) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'bn_search_stats';
+        $term = strtolower(trim($term));
+
+        $wpdb->query($wpdb->prepare(
+            "INSERT INTO $table_name (term, search_count) 
+             VALUES (%s, 1) 
+             ON DUPLICATE KEY UPDATE search_count = search_count + 1",
+            $term
+        ));
     }
 }
 
