@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Busca Notícias (ACF) - Sugestões AJAX
- * Description: Shortcode [busca_noticias] — busca por CPT "noticia" incluindo TÍTULO e campos ACF (resumo, revisao, autor, autor_bio). Sugestões a partir de 3 caracteres via AJAX.
+ * Description: Shortcode [busca_noticias] — busca por CPT "cpt_name" incluindo TÍTULO e campos ACF (resumo, revisao, autor, autor_bio). Sugestões a partir de 3 caracteres via AJAX.
  * Version: 2.1.2
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
@@ -67,7 +67,7 @@ class BN_Ajax_Search {
             'placeholder' => 'Pesquisar notícias...',
             'min_chars' => 3,
             'limit' => 50,
-            'post_type' => 'noticia',
+            'post_type' => 'imoveis',
             'taxonomy'  => '',
             'tax_term'  => '',
             'category'  => '',
@@ -89,7 +89,7 @@ class BN_Ajax_Search {
                 data-post-type="<?php echo esc_attr($atts['post_type']); ?>"
                 data-taxonomy="<?php echo esc_attr($atts['taxonomy']); ?>"
                 data-tax-term="<?php echo esc_attr($atts['tax_term']); ?>"
-                aria-label="Buscar notícias">
+                aria-label="Buscar Imóveis">
             <div class="bn-results" role="listbox" aria-live="polite"></div>
         </div>
 

@@ -5,7 +5,7 @@
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #cfd8dc;
-  border-radius: 8px!important;
+  border-radius: 30px!important;
   font-size: 15px;
   box-sizing: border-box;
   outline: none; /* NÃO mostrar outline por padrão */
@@ -13,8 +13,8 @@
 
 /* outline azul apenas no foco (acessível) */
 .bn-search-input:focus {
-  outline: 2px solid #0094c6;
-  box-shadow: 0 0 0 3px rgba(0, 148, 198, 0.08);
+  outline: 1px solid #666;
+  box-shadow: 0 0 0 3px #6666663d;
 }
 
 .bn-results {
