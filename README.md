@@ -51,6 +51,7 @@ Plugin WordPress para busca instantânea via AJAX em posts, páginas ou custom p
 
 ## Funcionamento
 - O campo de busca aparece onde o shortcode é inserido.
+- A pesquisa pode ser enviada pelo botão de lupa ou pressionando Enter.
 - Sugestões aparecem a partir do número mínimo de caracteres (`min_chars`).
 - A busca considera título, conteúdo, excerpt e campos ACF (`resumo`, `revisao`, `autor`, `autor_bio`).
 - Filtros por categoria/taxonomia são aplicados se informados.

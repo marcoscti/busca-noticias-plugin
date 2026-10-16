@@ -1,9 +1,12 @@
 .bn-search-wrap {
   position: relative;
 }
+.bn-search-control {
+  position: relative;
+}
 .bn-search-input {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px 48px 10px 12px;
   border: 1px solid #cfd8dc;
   border-radius: 30px!important;
   font-size: 15px;
@@ -15,6 +18,40 @@
 .bn-search-input:focus {
   outline: 1px solid #666;
   box-shadow: 0 0 0 3px #6666663d;
+}
+.bn-search-submit {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #14212b;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.bn-search-submit svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+.bn-search-submit:hover {
+  background: #14212b;
+  color: #fff;
+}
+.bn-search-submit:focus-visible {
+  outline: 2px solid #ba9561;
+  outline-offset: 2px;
 }
 
 .bn-results {

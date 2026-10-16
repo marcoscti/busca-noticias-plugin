@@ -69,9 +69,18 @@ jQuery(function ($) {
       });
   }
 
+  function submitSearch($input) {
+    const postType = $input.attr("data-post-type") || "noticia";
+    window.location.href = window.location.origin +
+      "?s=" +
+      encodeURIComponent($input.val().trim()) +
+      "&post_type=" +
+      encodeURIComponent(postType);
+  }
+
   input.on("input", function () {
     const $this = $(this);
-    const $resultsBox = $this.siblings(".bn-results");
+    const $resultsBox = $this.closest(".bn-search-wrap").find(".bn-results");
 
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(function () {
@@ -83,12 +92,13 @@ jQuery(function ($) {
     if (e.which === 13) {
       // Enter key
       e.preventDefault();
-      window.location.href = window.location.origin +
-        "?s=" +
-        encodeURIComponent($(this).val().trim()) +
-        "&post_type=" +
-        $(this).attr("data-post-type");
+      submitSearch($(this));
     }
+  });
+
+  $(".bn-search-submit").on("click", function () {
+    const $input = $(this).closest(".bn-search-control").find(".bn-search-input");
+    submitSearch($input);
   });
 
   // Ocultar ao clicar fora

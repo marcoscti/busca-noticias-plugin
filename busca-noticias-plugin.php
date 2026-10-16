@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Busca Notícias (ACF) - Sugestões AJAX
  * Description: Shortcode [busca_noticias] — busca por CPT "cpt_name" incluindo TÍTULO e campos ACF (resumo, revisao, autor, autor_bio). Sugestões a partir de 3 caracteres via AJAX.
- * Version: 2.1.2
+ * Version: 2.1.3
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -44,14 +44,14 @@ class BN_Ajax_Search {
             'bn-search-style',
             $dir . 'assets/css/busca-noticias.css',
             [],
-            '2.1.2'
+            '2.1.3'
         );
 
         wp_enqueue_script(
             'bn-search-js',
             $dir . 'assets/js/busca-noticias.js',
             ['jquery'],
-            '2.1.2',
+            '2.1.3',
             true
         );
 
@@ -81,15 +81,23 @@ class BN_Ajax_Search {
         ob_start(); ?>
         
         <div class="bn-search-wrap">
-            <input type="search"
-                class="bn-search-input"
-                placeholder="<?php echo esc_attr($atts['placeholder']); ?>"
-                data-min="<?php echo esc_attr($atts['min_chars']); ?>"
-                data-limit="<?php echo esc_attr($atts['limit']); ?>"
-                data-post-type="<?php echo esc_attr($atts['post_type']); ?>"
-                data-taxonomy="<?php echo esc_attr($atts['taxonomy']); ?>"
-                data-tax-term="<?php echo esc_attr($atts['tax_term']); ?>"
-                aria-label="Buscar Imóveis">
+            <div class="bn-search-control">
+                <input type="search"
+                    class="bn-search-input"
+                    placeholder="<?php echo esc_attr($atts['placeholder']); ?>"
+                    data-min="<?php echo esc_attr($atts['min_chars']); ?>"
+                    data-limit="<?php echo esc_attr($atts['limit']); ?>"
+                    data-post-type="<?php echo esc_attr($atts['post_type']); ?>"
+                    data-taxonomy="<?php echo esc_attr($atts['taxonomy']); ?>"
+                    data-tax-term="<?php echo esc_attr($atts['tax_term']); ?>"
+                    aria-label="Buscar Imóveis">
+                <button type="button" class="bn-search-submit" aria-label="Pesquisar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-4-4"></path>
+                    </svg>
+                </button>
+            </div>
             <div class="bn-results" role="listbox" aria-live="polite"></div>
         </div>
 
