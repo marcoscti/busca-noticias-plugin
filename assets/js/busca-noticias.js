@@ -54,8 +54,9 @@ jQuery(function ($) {
 
           const $info = $("<div>").addClass("bn-info");
           $("<h4>").text(item.title).appendTo($info);
+          const summary = item.resumo || "";
           $("<p>")
-            .text(item.resumo.slice(0, 150) + "...")
+            .text(summary.length > 150 ? summary.slice(0, 150).trimEnd() + "..." : summary)
             .appendTo($info);
 
           $a.append($thumb).append($info);

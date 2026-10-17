@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Busca Notícias (ACF) - Sugestões AJAX
  * Description: Shortcode [busca_noticias] — busca por CPT "cpt_name" incluindo TÍTULO e campos ACF (resumo, revisao, autor, autor_bio). Sugestões a partir de 3 caracteres via AJAX.
- * Version: 2.1.3
+ * Version: 2.1.4
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -44,14 +44,14 @@ class BN_Ajax_Search {
             'bn-search-style',
             $dir . 'assets/css/busca-noticias.css',
             [],
-            '2.1.3'
+            '2.1.4'
         );
 
         wp_enqueue_script(
             'bn-search-js',
             $dir . 'assets/js/busca-noticias.js',
             ['jquery'],
-            '2.1.3',
+            '2.1.4',
             true
         );
 
@@ -133,7 +133,7 @@ class BN_Ajax_Search {
         $post_type_key = is_array($post_type) ? implode(',', $post_type) : $post_type;
 
         // Cache simples por termo+limit+filtros (reduz carga em buscas repetidas)
-        $cache_key = 'bn_search_' . md5(strtolower($term) . '|' . $limit . '|' . $post_type_key . '|' . $taxonomy . '|' . $tax_term);
+        $cache_key = 'bn_search_v2_' . md5(strtolower($term) . '|' . $limit . '|' . $post_type_key . '|' . $taxonomy . '|' . $tax_term);
         $cached = get_transient($cache_key);
         if ($cached !== false) {
             wp_send_json_success($cached);
@@ -269,8 +269,8 @@ class BN_Ajax_Search {
                 // Escapar valores para evitar XSS ao inserir no JS
                 $results[] = [
                     'id'        => $post_id,
-                    'title'     => wp_strip_all_tags(get_the_title()),
-                    'resumo'    => wp_strip_all_tags($resumo),
+                    'title'     => html_entity_decode(wp_strip_all_tags(get_the_title()), ENT_QUOTES | ENT_HTML5, get_bloginfo('charset')),
+                    'resumo'    => html_entity_decode(wp_strip_all_tags($resumo), ENT_QUOTES | ENT_HTML5, get_bloginfo('charset')),
                     'thumbnail' => $thumb ? esc_url_raw($thumb) : '',
                     'permalink' => esc_url_raw(get_permalink()),
                 ];
