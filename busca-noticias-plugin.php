@@ -44,7 +44,7 @@ class BN_Ajax_Search {
             'bn-search-style',
             $dir . 'assets/css/busca-noticias.css',
             [],
-            '2.1.4'
+            '2.1.5'
         );
 
         wp_enqueue_script(

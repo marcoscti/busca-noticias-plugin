@@ -1,6 +1,11 @@
 .bn-search-wrap {
   position: relative;
   width: 100%;
+  --bn-navy: #14212b;
+  --bn-bronze: #ba9561;
+  --bn-cream: #f9f8f6;
+  --bn-sand: #f0ede5;
+  --bn-border: #e3decb;
 }
 .bn-search-control {
   position: relative;
@@ -10,11 +15,17 @@
   width: 100%;
   max-width: 100%;
   padding: 10px 48px 10px 12px;
-  border: 1px solid #cfd8dc;
+  border: 1px solid var(--bn-border);
   border-radius: 30px !important;
   font-size: 15px;
   box-sizing: border-box;
+  color: var(--bn-navy);
+  background: #fff;
   outline: none; /* NÃO mostrar outline por padrão */
+}
+.bn-search-input::placeholder {
+  color: #777;
+  opacity: 1;
 }
 .bn-search-input::-webkit-search-cancel-button,
 .bn-search-input::-webkit-search-decoration {
@@ -26,10 +37,10 @@
   display: none;
 }
 
-/* outline azul apenas no foco (acessível) */
+/* Destaque da marca no foco, mantendo indicação acessível. */
 .bn-search-input:focus {
-  outline: 1px solid #666;
-  box-shadow: 0 0 0 3px #6666663d;
+  outline: 1px solid var(--bn-bronze);
+  box-shadow: 0 0 0 3px rgb(186 149 97 / 24%);
 }
 .bn-search-submit {
   position: absolute;
@@ -44,7 +55,7 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: #14212b;
+  color: var(--bn-navy);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -58,11 +69,11 @@
   stroke-width: 2;
 }
 .bn-search-submit:hover {
-  background: #14212b;
+  background: var(--bn-navy);
   color: #fff;
 }
 .bn-search-submit:focus-visible {
-  outline: 2px solid #ba9561;
+  outline: 2px solid var(--bn-bronze);
   outline-offset: 2px;
 }
 
@@ -70,7 +81,7 @@
   display: none;
   box-sizing: border-box;
   background: #fff;
-  border: 1px solid #d9dee5;
+  border: 1px solid var(--bn-border);
   margin-top: 6px;
   border-radius: 12px;
   max-height: min(60vh, 420px);
@@ -91,24 +102,24 @@
   align-items: flex-start;
   gap: 12px;
   padding: 12px;
-  color: #14212b;
+  color: var(--bn-navy);
   text-decoration: none;
 }
 .bn-card + .bn-card {
-  border-top: 1px solid #edf0f3;
+  border-top: 1px solid var(--bn-border);
 }
 .bn-card:hover,
 .bn-card:focus-visible {
-  background: #f5f7fb;
+  background: var(--bn-cream);
 }
 .bn-card:focus-visible {
-  outline: 2px solid #ba9561;
+  outline: 2px solid var(--bn-bronze);
   outline-offset: -2px;
 }
 .bn-thumb {
   flex: 0 0 80px;
   height: 64px;
-  background: #f0f0f0;
+  background: var(--bn-sand);
   overflow: hidden;
   border-radius: 6px;
 }
@@ -121,7 +132,7 @@
 .bn-no-thumb {
   width: 100%;
   height: 100%;
-  background: #e0e0e0;
+  background: var(--bn-border);
 }
 .bn-info {
   flex: 1 1 auto;
